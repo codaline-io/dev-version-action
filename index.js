@@ -5,14 +5,13 @@ const path = require('path')
 
 try {
   const filePath = core.getInput('filePath')
-  console.log(process.env.GITHUB_WORKSPACE, process.env.HOME)
-  const jsonFile = require(`${process.env.GITHUB_WORKSPACE}/${filePath}`)
+  const jsonFile = require(path.resolve(process.env.GITHUB_WORKSPACE, filePath))
   const branch = core.getInput('branch').replace('/', '-')
   const packageVersion = jsonFile.version
 
   jsonFile.version = getVersion(branch, packageVersion)
 
-  fs.writeFileSync(path.resolve(__dirname, filePath), `${JSON.stringify(jsonFile, null, 2)}\n`)
+  fs.writeFileSync(path.resolve(process.env.GITHUB_WORKSPACE, filePath), `${JSON.stringify(jsonFile, null, 2)}\n`)
 
   core.setOutput('version', jsonFile.version);
 
