@@ -5,6 +5,10 @@ inputs:
     description: 'Branch of current execution'
     required: true
     default: 'master'
+  filePath:
+    description: 'Path to file with version key'
+    required: true
+    default: 'package.json'
 outputs:
   version:
     description: 'New generated Version number'

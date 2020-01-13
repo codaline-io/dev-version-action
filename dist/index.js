@@ -954,17 +954,17 @@ const github = __webpack_require__(300)
 const fs = __webpack_require__(747)
 const path = __webpack_require__(622)
 
-const packageJSON = __webpack_require__(208)
-
 try {
+  const filePath = core.getInput('filePath')
+  const jsonFile = require(filePath)
   const branch = core.getInput('branch').replace('/', '-')
-  const packageVersion = packageJSON.version
+  const packageVersion = jsonFile.version
 
-  packageJSON.version = getVersion(branch, packageVersion)
+  jsonFile.version = getVersion(branch, packageVersion)
 
-  fs.writeFileSync(path.resolve(__dirname, '../../package.json'), `${JSON.stringify(packageJSON, null, 2)}\n`)
+  fs.writeFileSync(path.resolve(__dirname, filePath), `${JSON.stringify(jsonFile, null, 2)}\n`)
 
-  core.setOutput('version', packageJSON.version);
+  core.setOutput('version', jsonFile.version);
 
 } catch (error) {
   core.setFailed(error.message);
@@ -983,7 +983,7 @@ function getVersion(branch, packageVersion) {
     }
   }
 
-  return `${packageJSON.version}-${branch}.1`
+  return `${jsonFile.version}-${branch}.1`
 }
 
 
@@ -4197,13 +4197,6 @@ function getLastPage (octokit, link, headers) {
   return getPage(octokit, link, 'last', headers)
 }
 
-
-/***/ }),
-
-/***/ 208:
-/***/ (function(module) {
-
-module.exports = {"name":"fdk-mobile-app","version":"1.6.4-case.1","author":"codaline - Marcus Kirsch & Bengt Weiße GbR","homepage":"http://www.tevim.com/","repository":{"type":"git","url":"https://github.com/FDK-GmbH-Co-KG/fdk-mobile.git"},"scripts":{"apollo:service:check":"apollo service:check","apollo:service:push":"apollo service:push","build":"yarn run build:frontend && yarn run build:server","build:docs":"yarn run redoc-cli bundle -o ./dist/server/docs/index.html ./src/server/docs/api/swagger.yaml","build:frontend":"ng build --prod --aot --buildOptimizer","build:frontend:dev":"ng build","build:launcher":"yarn run launcher:rebuild && electron-webpack","build:server":"tsc --project ./src/server/tsconfig.json --sourcemap true","build:server:watch":"tsc-watch --project ./src/server/tsconfig.json --sourcemap true","dev:launcher":"yarn run launcher:rebuild && electron-webpack dev","dev:server":"yarn build:server && node ./dist/server/server.js","dev:server:watch":"yarn build:server:watch --onSuccess 'node ./dist/server/server.js'","launcher:rebuild":"yarn run electron-rebuild","ng":"ng","start":"node ./dist/server/server.js","serve":"ng serve","test:frontend":"ng test -c ci","test:launcher":"jest --config ./src/launcher/jest.config.js","test:server":"jest --config ./src/server/jest.config.js","lint":"yarn lint:scss && yarn lint:ts && yarn lint:launcher && yarn lint:server","lint:launcher":"eslint --ext .ts --ext .tsx ./src/launcher","lint:scss":"stylelint ./src/**/*.scss ./src/**/**/*.scss","lint:scss:fix":"stylelint ./src/**/*.scss ./src/**/**/*.scss --fix","lint:server":"eslint --ext .ts ./src/server","lint:ts":"eslint --ext .ts ./src/frontend","lint:ts:fix":"eslint --ext .ts --ext .tsx ./src --fix","gql-gen":"GRAPHQL_CODE_GEN=true TS_NODE_PROJECT='./scripts/tsconfig.json' gql-gen","package":"yarn run build:launcher && electron-builder --config ./electron-builder.js --mac","package:win":"yarn run build:launcher && electron-builder --config ./electron-builder.js --win","semantic-release":"semantic-release"},"engines":{"node":">=12.x","yarn":"1.x"},"main":"./main.js","private":true,"resolutions":{"graphql":"^14.5.6"},"husky":{"hooks":{"pre-push":"yarn lint"}},"dependencies":{"@mojotech/json-type-validation":"^3.1.0","@sentry/browser":"^5.10.2","@sentry/electron":"^1.1.0","apollo-datasource-rest":"^0.6.10","apollo-server-express":"^2.9.14","base64-url":"^2.3.2","cors":"^2.8.5","cross-fetch":"^3.0.4","dotenv":"^8.2.0","electron-is-dev":"^1.1.0","electron-log":"^4.0.0","electron-store":"^5.1.0","express":"^4.17.1","form-data":"^3.0.0","fs-extra":"^8.1.0","graphql":"^14.5.8","graphql-iso-date":"^3.6.1","graphql-tag":"^2.10.1","graphql-tools":"^4.0.6","http-cache-semantics":"^4.0.3","http-shutdown":"^1.2.1","iterall":"^1.2.2","lodash":"^4.17.15","lru-cache":"^5.1.1","luxon":"^1.21.3","node-fetch":"^2.6.0","readdirp":"^3.3.0","sharp":"^0.23.4","shortid":"^2.2.15","source-map-support":"^0.5.16","subscriptions-transport-ws":"^0.9.16","swagger-ui-express":"^4.1.2","uuid":"^3.3.3"},"devDependencies":{"@angular-builders/custom-webpack":"^8.4.1","@angular-builders/dev-server":"^7.3.1","@angular-builders/jest":"^8.3.2","@angular-devkit/architect":"^0.900.0-rc.8","@angular-devkit/build-angular":"^0.900.0-rc.8","@angular-devkit/build-optimizer":"^0.900.0-rc.8","@angular-devkit/core":"^9.0.0-rc.8","@angular-devkit/schematics":"^9.0.0-rc.8","@angular/animations":"^9.0.0-rc.8","@angular/cli":"^9.0.0-rc.8","@angular/common":"^9.0.0-rc.8","@angular/compiler":"^9.0.0-rc.8","@angular/compiler-cli":"^9.0.0-rc.8","@angular/core":"^9.0.0-rc.8","@angular/forms":"^9.0.0-rc.8","@angular/language-service":"^9.0.0-rc.8","@angular/platform-browser":"^9.0.0-rc.8","@angular/platform-browser-dynamic":"^9.0.0-rc.8","@angular/router":"^9.0.0-rc.8","@babel/core":"^7.7.5","@babel/preset-env":"^7.7.6","@babel/preset-react":"^7.7.4","@babel/runtime":"^7.7.6","@graphql-codegen/add":"^1.9.1","@graphql-codegen/cli":"^1.9.1","@graphql-codegen/schema-ast":"^1.9.1","@graphql-codegen/typescript":"^1.9.1","@graphql-codegen/typescript-apollo-angular":"^1.9.1","@graphql-codegen/typescript-graphql-files-modules":"^1.9.1","@graphql-codegen/typescript-operations":"^1.9.1","@graphql-codegen/typescript-resolvers":"^1.9.1","@ionic/angular":"^4.11.7","@ionic/angular-toolkit":"^2.1.1","@ionic/core":"^4.11.7","@ionic/storage":"^2.2.0","@types/apollo-upload-client":"^8.1.3","@types/chart.js":"^2.9.5","@types/fs-extra":"8.0.1","@types/graphql-iso-date":"3.3.3","@types/hammerjs":"^2.0.36","@types/http-cache-semantics":"^4.0.0","@types/jest":"^24.0.23","@types/lodash":"^4.14.149","@types/lru-cache":"^5.1.0","@types/luxon":"^1.21.0","@types/node":"*","@types/node-fetch":"^2.5.4","@types/pdfjs-dist":"^2.1.3","@types/react":"^16.9.16","@types/react-dom":"^16.9.4","@types/sharp":"^0.23.1","@types/shortid":"^0.0.29","@types/uuid":"^3.4.6","@types/ws":"^6.0.4","@typescript-eslint/eslint-plugin":"^2.12.0","@typescript-eslint/parser":"^2.12.0","ajv":"^6.10.2","apollo":"^2.21.2","apollo-angular":"^1.8.0","apollo-cache-inmemory":"^1.6.5","apollo-client":"^2.6.8","apollo-link":"^1.2.13","apollo-link-error":"^1.1.12","apollo-link-http":"^1.5.16","apollo-link-retry":"^2.2.15","apollo-link-ws":"^1.0.19","apollo-upload-client":"^12.1.0","apollo-utilities":"^1.3.3","babel-jest":"^24.9.0","babel-loader":"^8.0.6","canvas":"^2.6.1","chart.js":"^2.9.3","codelyzer":"^5.2.0","concurrently":"^5.0.2","core-js":"^3.5.0","electron":"^7.1.6","electron-builder":"^21.2.0","electron-notarize":"^0.2.1","electron-rebuild":"^1.8.8","electron-webpack":"^2.7.4","electron-webpack-ts":"^3.2.0","env-ci":"^4.5.2","eslint":"^6.7.2","eslint-plugin-import":"^2.19.1","eslint-plugin-react":"^7.17.0","get-orientation":"^1.1.2","graphql-codegen-typescript-client":"^0.18.2","graphql-codegen-typescript-common":"^0.18.2","grommet":"2.9.0","grommet-icons":"^4.4.0","hammerjs":"^2.0.8","html-webpack-plugin":"^3.2.0","husky":"^3.1.0","ionicons":"^4.6.3","jest":"^24.9.0","json-formatter-js":"^2.2.1","ng2-pdf-viewer":"^6.0.2","null-loader":"^3.0.0","pdfjs-dist":"^2.2.228","react":"^16.12.0","react-dom":"^16.12.0","redoc-cli":"^0.9.4","rxjs":"~6.5.3","styled-components":"^4.4.1","stylelint":"^12.0.0","stylelint-config-recommended-scss":"^4.1.0","stylelint-scss":"^3.13.0","three":"0.111.0","ts-jest":"^24.2.0","ts-node":"~8.5.4","tsc-watch":"^4.0.0","tslib":"^1.10.0","tslint":"~5.20.1","tslint-eslint-rules":"^5.4.0","typescript":"~3.6.0","webpack":"^4.41.3","zone.js":"~0.10.2"},"description":"FdK mobile","productName":"FDK Mobile Server","publishConfig":{"access":"restricted"},"electronWebpack":{"commonSourceDirectory":"src/launcher","title":true,"main":{"sourceDirectory":"src/launcher/main","webpackConfig":"src/launcher/main/webpack.additions.js"},"renderer":{"sourceDirectory":"src/launcher/renderer","webpackConfig":"src/launcher/renderer/webpack.additions.js"}}};
 
 /***/ }),
 

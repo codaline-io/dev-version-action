@@ -3,17 +3,17 @@ const github = require('@actions/github')
 const fs = require('fs')
 const path = require('path')
 
-const packageJSON = require('../../package.json')
-
 try {
+  const filePath = core.getInput('filePath')
+  const jsonFile = require(filePath)
   const branch = core.getInput('branch').replace('/', '-')
-  const packageVersion = packageJSON.version
+  const packageVersion = jsonFile.version
 
-  packageJSON.version = getVersion(branch, packageVersion)
+  jsonFile.version = getVersion(branch, packageVersion)
 
-  fs.writeFileSync(path.resolve(__dirname, '../../package.json'), `${JSON.stringify(packageJSON, null, 2)}\n`)
+  fs.writeFileSync(path.resolve(__dirname, filePath), `${JSON.stringify(jsonFile, null, 2)}\n`)
 
-  core.setOutput('version', packageJSON.version);
+  core.setOutput('version', jsonFile.version);
 
 } catch (error) {
   core.setFailed(error.message);
@@ -32,5 +32,5 @@ function getVersion(branch, packageVersion) {
     }
   }
 
-  return `${packageJSON.version}-${branch}.1`
+  return `${jsonFile.version}-${branch}.1`
 }
