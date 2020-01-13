@@ -1,4 +1,4 @@
-# dev-releases
+# dev-releases-action
 
 This action generates a version number and update the package.json with this.
 
@@ -18,6 +18,8 @@ The generated version number.
 
 ## Example usage
 
+```
 uses: actions/dev-releases@v1
 with:
-  branch: feat/
+  branch: feat/dev-branch
+```
