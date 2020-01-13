@@ -5,6 +5,7 @@ const path = require('path')
 
 try {
   const filePath = core.getInput('filePath')
+  console.log(process.env.GITHUB_WORKSPACE, process.env.HOME)
   const jsonFile = require(`${process.env.GITHUB_WORKSPACE}/${filePath}`)
   const branch = core.getInput('branch').replace('/', '-')
   const packageVersion = jsonFile.version
