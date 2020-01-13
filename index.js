@@ -5,9 +5,10 @@ const path = require('path')
 
 try {
   const filePath = core.getInput('filePath')
-  const jsonFile = JSON.parse(fs.readFileSync(path.resolve(process.env.GITHUB_WORKSPACE, filePath)))
 
   console.log(path.resolve(process.env.GITHUB_WORKSPACE, filePath))
+
+  const jsonFile = JSON.parse(fs.readFileSync(path.resolve(process.env.GITHUB_WORKSPACE, filePath)))
 
   const branch = core.getInput('branch').replace('/', '-')
   const packageVersion = jsonFile.version
@@ -19,6 +20,7 @@ try {
   core.setOutput('version', jsonFile.version);
 
 } catch (error) {
+  console.error(error)
   core.setFailed(error.message);
 }
 
