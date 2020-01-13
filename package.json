@@ -1,0 +1,12 @@
+{
+  "name": "dev-releases-action",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "git@github.com:codaline-io/dev-releases.git",
+  "homepage": "http://www.codaline.io",
+  "author": "codaline - Marcus Kirsch & Bengt Weiße GbR <mail@codaline.io>",
+  "dependencies": {
+    "@actions/core": "^1.2.1",
+    "@actions/github": "^2.0.1"
+  }
+}

@@ -1,0 +1,13 @@
+name: 'Dev Releases'
+description: 'Create Dev Releases'
+inputs:
+  branch:
+    description: 'Branch of current execution'
+    required: true
+    default: 'master'
+outputs:
+  version:
+    description: 'New generated Version number'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
