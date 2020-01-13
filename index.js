@@ -5,7 +5,7 @@ const path = require('path')
 
 try {
   const filePath = core.getInput('filePath')
-  const jsonFile = require(filePath)
+  const jsonFile = require(`${process.env.GITHUB_WORKSPACE}/${filePath}`)
   const branch = core.getInput('branch').replace('/', '-')
   const packageVersion = jsonFile.version
 
