@@ -4,11 +4,10 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
-    needs: prepare
 
-    strategy:
-      matrix:
-        node-version: [12.x]
+    # strategy:
+    #   matrix:
+    #     node-version: [12.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -21,13 +20,13 @@ jobs:
     - name: echo simple version
       run: echo ${{ steps.createSimpleVersion.outputs.version }}
 
-    # - name: Create version with complex branch name
-    #   uses: ./
-    #   id: createComplexVersion
-    #   with:
-    #     branch: feat/testi-test
-    # - name: echo complex version
-    #   run: echo ${{ steps.createComplexVersion.outputs.version }}
+    - name: Create version with complex branch name
+      uses: ./
+      id: createComplexVersion
+      with:
+        branch: feat/testi-test
+    - name: echo complex version
+      run: echo ${{ steps.createComplexVersion.outputs.version }}
 
     # - name: Create json with custom version
     #   run: |
