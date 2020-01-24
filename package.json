@@ -1,10 +1,30 @@
 {
-  "name": "dev-version",
+  "name": "dev-version-action",
   "version": "0.1.0",
   "main": "index.js",
-  "repository": "git@github.com:codaline-io/dev-version.git",
-  "homepage": "http://www.codaline.io",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codaline-io/dev-version-action.git"
+  },
+  "keywords": [
+    "GitHub",
+    "Actions",
+    "Versioning",
+    "Dev",
+    "Beta",
+    "Prerelease",
+    "Node",
+    "JS",
+    "TS",
+    "Typescript",
+    "Javascript"
+  ],
   "author": "codaline - Marcus Kirsch & Bengt Weiße GbR <mail@codaline.io>",
+  "description": "A github aciton to create dev versions per git branch",
+  "bugs": {
+    "url": "https://github.com/codaline-io/dev-version-action/issues"
+  },
+  "homepage": "https://github.com/codaline-io/dev-version-action",
   "license": "MIT",
   "scripts": {
     "package": "ncc build index.js -o dist",
