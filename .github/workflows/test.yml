@@ -5,10 +5,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    # strategy:
-    #   matrix:
-    #     node-version: [12.x]
-
     steps:
     - uses: actions/checkout@v2
 
@@ -28,17 +24,17 @@ jobs:
     - name: echo complex version
       run: echo ${{ steps.createComplexVersion.outputs.version }}
 
-    # - name: Create json with custom version
-    #   run: |
-    #     mkdir test
-    #     cd test
-    #     echo '{"version": "test-beta.1"}' > package.json
+    - name: Create json with custom version
+      run: |
+        mkdir test
+        cd test
+        echo '{"version": "test-beta.1"}' > package.json
 
-    # - name: Increase version
-    #   uses: ./
-    #   id: createBumpVersion
-    #   with:
-    #     branch: test
-    #     filePath: test/package.json
-    # - name: echo complex version
-    #   run: echo ${{ steps.createBumpVersion.outputs.version }}
+    - name: Increase version
+      uses: ./
+      id: createBumpVersion
+      with:
+        branch: test
+        filePath: test/package.json
+    - name: echo complex version
+      run: echo ${{ steps.createBumpVersion.outputs.version }}
