@@ -1,6 +1,6 @@
 # dev-version
 
-This action generates a new dev version number for a git branch, e.g. `1.0.0-dev.1`
+This action generates a new dev version number for a git branch, e.g. `1.0.0-dev.1` for all projects where the version is part of a json file, e.g. `package.json`.
 
 It accepts a json file path and a branch name as input.
 No release magic or analyzing changelogs is happening.
@@ -45,14 +45,12 @@ The main part of the version, e.g. `1.0.0` will not be touched. It is more like 
 
 ## Outputs
 
-### `version`
-
-The generated version number.
+- **version**: The generated version number.
 
 ## Example usage
 
 ```
-uses: actions/dev-releases@v1
+uses: actions/dev-version@0.1.1
 with:
   branch: feat/dev-branch
 ```
