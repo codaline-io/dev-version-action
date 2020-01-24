@@ -1,0 +1,57 @@
+name: test
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Create test folder
+      run: mkdir test
+
+    - name: Create json with simple version
+      run: |
+        echo '{"version": "1.0.0"}' > test/package.json
+    - name: Create simple version
+      uses: ./
+      id: createSimpleVersion
+      with:
+        branch: dev
+        filePath: test/package.json
+    - name: test simple version
+      if: steps.createSimpleVersion.outputs.version != '1.0.0-dev.1'
+      run: |
+        echo "Received: ${{ steps.createSimpleVersion.outputs.version }}, but expected 1.0.0-dev.1"
+        exit 1
+
+    - name: Create json with for complex version
+      run: |
+        echo '{"version": "1.0.0"}' > test/package.json
+    - name: Create version with complex branch name
+      uses: ./
+      id: createComplexVersion
+      with:
+        branch: feat/testi-test
+        filePath: test/package.json
+    - name: test complex version
+      if: steps.createComplexVersion.outputs.version != '1.0.0-feat-testi-test.1'
+      run: |
+        echo "Received: ${{ steps.createComplexVersion.outputs.version }}, but expected 1.0.0-feat-testi-test.1"
+        exit 1
+
+    - name: Create json with exiting dev version
+      run: |
+        echo '{"version": "1.0.0-test.1"}' > test/package.json
+    - name: Increase version
+      uses: ./
+      id: createBumpVersion
+      with:
+        branch: test
+        filePath: test/package.json
+    - name: test version bump
+      if: steps.createBumpVersion.outputs.version != '1.0.0-test.2'
+      run: |
+        echo "Received: ${{ steps.createBumpVersion.outputs.version }}, but expected 1.0.0-test.2"
+        exit 1
