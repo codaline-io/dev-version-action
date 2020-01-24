@@ -7,12 +7,14 @@
   "author": "codaline - Marcus Kirsch & Bengt Weiße GbR <mail@codaline.io>",
   "license": "MIT",
   "scripts": {
-    "package": "ncc build index.js -o dist"
+    "package": "ncc build index.js -o dist",
+    "lint": "eslint *.js"
   },
   "dependencies": {
     "@actions/core": "^1.2.2"
   },
   "devDependencies": {
-    "@zeit/ncc": "^0.21.0"
+    "@zeit/ncc": "^0.21.0",
+    "eslint": "^6.3.0"
   }
 }
