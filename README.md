@@ -12,6 +12,9 @@ The main part of the version, e.g. `1.0.0` will not be touched. It is more like 
 2.   check the **version** field in the json file
 3.   decides if there is already a dev release
 4.   creates a new version for that branch or increase the dev-release number
+5.   writes the new version into the json file
+6.   provides the new version string as output of the action
+7.   Now you can do what you want, e.g. commit & push the changes, use it for a build step or anything else :)
 
 ## Examples
 
