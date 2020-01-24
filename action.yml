@@ -1,5 +1,8 @@
 name: 'Dev version'
 description: 'Creates a dev version'
+branding:
+  color: orange
+  icon: anchor
 inputs:
   branch:
     description: 'Branch of current execution'
