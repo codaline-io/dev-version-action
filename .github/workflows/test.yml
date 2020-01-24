@@ -28,8 +28,7 @@ jobs:
       run: |
         mkdir test
         cd test
-        echo '{"version": "test-beta.1"}' > package.json
-
+        echo '{"version": "1.0.0-test.1"}' > package.json
     - name: Increase version
       uses: ./
       id: createBumpVersion
