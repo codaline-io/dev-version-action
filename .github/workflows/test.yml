@@ -1,0 +1,45 @@
+name: test
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    needs: prepare
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Create simple version
+      uses: ./
+      id: createSimpleVersion
+      with:
+        branch: dev
+    - name: echo simple version
+      run: echo ${{ steps.createSimpleVersion.outputs.version }}
+
+    - name: Create version with complex branch name
+      uses: ./
+      id: createComplexVersion
+      with:
+        branch: feat/testi-test
+    - name: echo complex version
+      run: echo ${{ steps.createComplexVersion.outputs.version }}
+
+    - name: Create json with custom version
+      run: |
+        mkdir test
+        cd test
+        echo '{"version": "test-beta.1"}' > package.json
+
+    - name: Increase version
+      uses: ./
+      id: createBumpVersion
+      with:
+        branch: test
+        filePath: test/package.json
+    - name: echo complex version
+      run: echo ${{ steps.createBumpVersion.outputs.version }}
