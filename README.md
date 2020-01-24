@@ -37,13 +37,8 @@ The main part of the version, e.g. `1.0.0` will not be touched. It is more like 
 
 ## Inputs
 
-### `branch`
-
-**Required** The name of the branch to check if the current branch is master or a dev-branch. Default `master`.
-
-### `filePath`
-
-**Required** The json file path or file name where the `version` field is present. Default `package.json`.
+- **branch**: The name of the branch to check if the current branch is master or a dev-branch. Default `master`.
+- **filePath**: The json file path or file name where the `version` field is present. Default `package.json`.
 
 ## Outputs
 
