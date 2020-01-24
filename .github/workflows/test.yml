@@ -21,11 +21,10 @@ jobs:
         branch: dev
         filePath: test/package.json
     - name: test simple version
+      if: steps.createSimpleVersion.outputs.version != '1.0.0-dev.1'
       run: |
-        if ["${{ steps.createSimpleVersion.outputs.version }}" != "1.0.0-dev.1"]; then
-          echo "Received: ${{ steps.createSimpleVersion.outputs.version }}, but expected 1.0.0-dev.1"
-          exit 1
-        fi
+        echo "Received: ${{ steps.createSimpleVersion.outputs.version }}, but expected 1.0.0-dev.1"
+        exit 1
 
     - name: Create json with for complex version
       run: |
@@ -37,11 +36,10 @@ jobs:
         branch: feat/testi-test
         filePath: test/package.json
     - name: test complex version
+      if: steps.createComplexVersion.outputs.version != '1.0.0-feat-testi-test.1'
       run: |
-        if ["${{ steps.createComplexVersion.outputs.version }}" != "1.0.0-feat-testi-test.1"]; then
-          echo "Received: ${{ steps.createComplexVersion.outputs.version }}, but expected 1.0.0-feat-testi-test.1"
-          exit 1
-        fi
+        echo "Received: ${{ steps.createComplexVersion.outputs.version }}, but expected 1.0.0-feat-testi-test.1"
+        exit 1
 
     - name: Create json with exiting dev version
       run: |
@@ -53,8 +51,7 @@ jobs:
         branch: test
         filePath: test/package.json
     - name: test version bump
+      if: steps.createBumpVersion.outputs.version != '1.0.0-test.2'
       run: |
-        if ["${{ steps.createBumpVersion.outputs.version }}" != "1.0.0-test.2"]; then
-          echo "Received: ${{ steps.createBumpVersion.outputs.version }}, but expected 1.0.0-test.2"
-          exit 1
-        fi
+        echo "Received: ${{ steps.createBumpVersion.outputs.version }}, but expected 1.0.0-test.2"
+        exit 1
