@@ -20,7 +20,7 @@
     "Javascript"
   ],
   "author": "codaline - Marcus Kirsch & Bengt Weiße GbR <mail@codaline.io>",
-  "description": "An github aciton to create dev versions per git branch",
+  "description": "A github aciton to create dev versions per git branch",
   "bugs": {
     "url": "https://github.com/codaline-io/dev-version-action/issues"
   },
