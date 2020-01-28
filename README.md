@@ -50,7 +50,8 @@ The main part of the version, e.g. `1.0.0` will not be touched. It is more like 
 ## Example usage
 
 ```
-uses: actions/dev-version@0.1.1
+uses: codaline-io/dev-version@0.1.2
 with:
   branch: feat/dev-branch
+  filePath: ./package.json
 ```
