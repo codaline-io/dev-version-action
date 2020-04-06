@@ -34,7 +34,7 @@
     "@actions/core": "^1.2.3"
   },
   "devDependencies": {
-    "@zeit/ncc": "^0.22.0",
+    "@zeit/ncc": "^0.22.1",
     "eslint": "^6.3.0"
   }
 }
