@@ -31,7 +31,7 @@
     "lint": "eslint *.js"
   },
   "dependencies": {
-    "@actions/core": "^1.2.6"
+    "@actions/core": "^1.2.7"
   },
   "devDependencies": {
     "@zeit/ncc": "^0.22.3",
