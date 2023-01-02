@@ -1,6 +1,6 @@
 {
   "name": "dev-version-action",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -27,7 +27,7 @@
   "homepage": "https://github.com/codaline-io/dev-version-action",
   "license": "MIT",
   "scripts": {
-    "package": "ncc build index.js -o dist",
+    "package": "cross-env NODE_OPTIONS=--openssl-legacy-provider ncc build index.js -o dist",
     "lint": "eslint *.js"
   },
   "dependencies": {
@@ -35,6 +35,11 @@
   },
   "devDependencies": {
     "@zeit/ncc": "^0.22.3",
-    "eslint": "^6.3.0"
+    "cross-env": "^7.0.3",
+    "eslint": "^8.31.0"
+  },
+  "volta": {
+    "node": "18.12.1",
+    "yarn": "3.3.1"
   }
 }
