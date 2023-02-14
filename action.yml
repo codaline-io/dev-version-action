@@ -13,6 +13,7 @@ inputs:
     required: false
     default: 'package.json'
   withoutNumber:
+    type: boolean
     description: 'Deactivates the number suffix + increment'
     required: false
     default: false
