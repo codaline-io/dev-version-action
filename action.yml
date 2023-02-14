@@ -12,9 +12,13 @@ inputs:
     description: 'Path to json file with version key'
     required: false
     default: 'package.json'
+  withoutNumber:
+    description: 'Deactivates the number suffix + increment'
+    required: false
+    default: false
 outputs:
   version:
     description: 'New generated version number'
 runs:
-  using: 'node12'
+  using: 'node18'
   main: 'dist/index.js'

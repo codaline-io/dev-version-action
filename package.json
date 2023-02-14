@@ -1,6 +1,6 @@
 {
   "name": "dev-version-action",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -36,7 +36,7 @@
   "devDependencies": {
     "@zeit/ncc": "^0.22.3",
     "cross-env": "^7.0.3",
-    "eslint": "^8.31.0"
+    "eslint": "^8.34.0"
   },
   "volta": {
     "node": "18.12.1",
