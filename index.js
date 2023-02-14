@@ -9,7 +9,7 @@ try {
   const branch = core.getInput('branch').replace('/', '-')
   const packageVersion = jsonFile.version
 
-  const withoutNumber = core.getBooleanInput('withoutNumber')
+  const withoutNumber = ['true', '1'].includes(core.getInput('withoutNumber').toLowerCase())
 
   jsonFile.version = getVersion(branch, packageVersion, !withoutNumber)
 
