@@ -61,13 +61,13 @@ jobs:
         echo '{"version": "1.0.0"}' > test/package.json
     - name: Create version with complex branch name without suffix
       uses: ./
-      id: createComplexVersion
+      id: createComplexVersionWithoutSuffix
       with:
         branch: feat/testi-test
         filePath: test/package.json
         withoutNumber: true
     - name: test complex version without suffix
-      if: steps.createComplexVersion.outputs.version != '1.0.0-feat-testi-test'
+      if: steps.createComplexVersionWithoutSuffix.outputs.version != '1.0.0-feat-testi-test'
       run: |
-        echo "Received: ${{ steps.createComplexVersion.outputs.version }}, but expected 1.0.0-feat-testi-test"
+        echo "Received: ${{ steps.createComplexVersionWithoutSuffix.outputs.version }}, but expected 1.0.0-feat-testi-test"
         exit 1
