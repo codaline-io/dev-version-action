@@ -65,7 +65,7 @@ jobs:
       with:
         branch: feat/testi-test
         filePath: test/package.json
-        withoutNumber: true
+        withoutNumber: 'true'
     - name: test complex version without suffix
       if: steps.createComplexVersionWithoutSuffix.outputs.version != '1.0.0-feat-testi-test'
       run: |
