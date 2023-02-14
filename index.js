@@ -10,7 +10,7 @@ try {
   const packageVersion = jsonFile.version
 
   const withoutNumber = ['true', '1'].includes(core.getInput('withoutNumber').toLowerCase())
-
+console.log(withoutNumber)
   jsonFile.version = getVersion(branch, packageVersion, !withoutNumber)
 
   fs.writeFileSync(path.resolve(process.env.GITHUB_WORKSPACE, filePath), `${JSON.stringify(jsonFile, null, 2)}\n`)
